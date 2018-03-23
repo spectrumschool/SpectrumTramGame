@@ -2,5 +2,5 @@
 Arcade Game project by students of Spectrumschool, Deurne, Belgium
 
 ### Team
-- My Name
+- Jonas Andries
 - Nic Broos
