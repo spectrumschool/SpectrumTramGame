@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4031922495545522}
   - component: {fileID: 114950237459142240}
+  - component: {fileID: 114477577708150206}
   m_Layer: 0
   m_Name: HaltePerron
   m_TagString: Untagged
@@ -220,6 +221,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114477577708150206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843523174165314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f36f8746385211149b063cdda600d5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  haltenaam: {fileID: 114238954161063018}
 --- !u!114 &114950237459142240
 MonoBehaviour:
   m_ObjectHideFlags: 1
