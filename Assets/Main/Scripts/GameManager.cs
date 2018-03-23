@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance = null;
 
+    public int tramSpeed = 1;
+
 	private int _reputation = 0;
 	public int reputation
 	{
