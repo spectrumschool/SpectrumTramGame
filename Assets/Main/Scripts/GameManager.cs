@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance = null;
 
+	public int maxReputation;
+
 	private int _reputation = 0;
 	public int reputation
 	{
@@ -27,6 +29,11 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+	}
+
+	void Start()
+	{
+		EventManager.ReputationChangedEvent(_reputation);
 	}
 
 	void Update()
