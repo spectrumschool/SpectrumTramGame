@@ -1,4 +1,4 @@
-# SpectrumTramGame
+﻿# SpectrumTramGame
 Arcade Game project by students of Spectrumschool, Deurne, Belgium
 
 ### Team
@@ -10,3 +10,4 @@ Arcade Game project by students of Spectrumschool, Deurne, Belgium
 - Zakaria Arbib
 - Hannes Devillé
 - Lex Liégeois
+- Alexander van heymbeeck
