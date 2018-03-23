@@ -5,9 +5,10 @@ using UnityEngine;
 public class TramDriver : MonoBehaviour
 {
     public Transform[] tracks;
+    public float speed = 1.0f;
 
-	private int _currentTrack;
-    private Vector3 original;
+    private int _currentTrack;
+    private Vector3 _target;
 
     void Start()
 	{
@@ -30,10 +31,16 @@ public class TramDriver : MonoBehaviour
             _currentTrack = _currentTrack + 1;
             ChangeTrack();
 		}
-	}
+
+        float step = speed * Time.deltaTime;
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, _target, step);
+
+
+    }
 
 	void ChangeTrack()
 	{
-        transform.localPosition = new Vector3(tracks[_currentTrack].localPosition.x, -3.8f, 0f);
+        _target = new Vector3(tracks[_currentTrack].localPosition.x, -3.8f, 0f);
+        
 	}
 }
