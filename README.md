@@ -2,5 +2,5 @@
 Arcade Game project by students of Spectrumschool, Deurne, Belgium
 
 ### Team
-- My Name
+- Zakaria Arbib
 - Nic Broos
