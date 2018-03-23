@@ -714,7 +714,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4508969578200740, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4508969578200740, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
       propertyPath: m_LocalPosition.y
@@ -768,6 +768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a16ee896dc2247bab3f66b789578a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tracks:
+  - {fileID: 1748375526}
+  - {fileID: 826920009}
+  - {fileID: 1546209804}
+  - {fileID: 1914848235}
 --- !u!1001 &1035524827
 Prefab:
   m_ObjectHideFlags: 0

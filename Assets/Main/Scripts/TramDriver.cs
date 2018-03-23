@@ -4,30 +4,36 @@ using UnityEngine;
 
 public class TramDriver : MonoBehaviour
 {
-	
-	private int currentTrack;
+    public Transform[] tracks;
 
-	void Start()
+	private int _currentTrack;
+    private Vector3 original;
+
+    void Start()
 	{
-		//we start at track 1
-		ChangeTrack(1);
+        //we start at track 0
+        _currentTrack = 2;
+		ChangeTrack();
 	}
 
 	void Update ()
 	{
-		if(Input.GetKeyDown(KeyCode.LeftArrow))
+		if(Input.GetKeyDown(KeyCode.LeftArrow) && _currentTrack > 0)
 		{
-			//TODO: ChangeTrack(???);
-		}
-		if(Input.GetKeyDown(KeyCode.RightArrow))
+            _currentTrack = _currentTrack - 1;
+            ChangeTrack();
+
+        }
+		if(Input.GetKeyDown(KeyCode.RightArrow) && _currentTrack < 3)
 		{
-			//TODO: ChangeTrack(???);
+            //TODO: ChangeTrack(???);
+            _currentTrack = _currentTrack + 1;
+            ChangeTrack();
 		}
 	}
 
-	void ChangeTrack(int newTrack)
+	void ChangeTrack()
 	{
-		//TODO: change position to track position...
-		//transform.position = new Vector3(?,?,?);
+        transform.localPosition = new Vector3(tracks[_currentTrack].localPosition.x, -3.8f, 0f);
 	}
 }
