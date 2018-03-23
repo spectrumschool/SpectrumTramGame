@@ -6,4 +6,4 @@ Arcade Game project by students of Spectrumschool, Deurne, Belgium
 - Nic Broos
 - Zakaria Arbib
 - Hannes Devillé
-- Lex
+- Lex Liégeois
