@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance = null;
 
 	public int maxReputation;
+	public int tramSpeed = 1;
 
 	private int _reputation = 0;
 	public int reputation
@@ -42,6 +43,10 @@ public class GameManager : MonoBehaviour
 		if(Input.GetButtonDown("P1"))
 		{
 			reputation += 1;
+		}
+		if(Input.GetButtonDown("P2"))
+		{
+			reputation -= 1;
 		}
 	}
 }

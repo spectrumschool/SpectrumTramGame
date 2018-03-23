@@ -21,8 +21,6 @@ public class ReputationUI : MonoBehaviour
 
 	void OnReputationChanged (int newAmount)
 	{
-		Debug.Log("ReputationUI: "+newAmount);
-
 		for (int i = 0; i < bars.Length; i++)
 		{
 			Color color = clrDisabled;

@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11253595b55c94cda9ba653b707ab1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tramSpeed: 1
 --- !u!4 &37187046
 Transform:
   m_ObjectHideFlags: 0
@@ -397,6 +398,7 @@ Transform:
   - {fileID: 1546209804}
   - {fileID: 1914848235}
   - {fileID: 1004631529}
+  - {fileID: 1868476889}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -744,7 +746,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114803098644821504, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1004631529 stripped
@@ -1083,6 +1086,78 @@ Transform:
   m_PrefabParentObject: {fileID: 4610131966502598, guid: 614825878b51f4d279d1eed31a0af4ac,
     type: 2}
   m_PrefabInternal: {fileID: 1081234590}
+--- !u!1001 &1868476888
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 462963397}
+    m_Modifications:
+    - target: {fileID: 114077966403580284, guid: 76342bdb0d80f27498d04a2ecb74dc0f,
+        type: 2}
+      propertyPath: tracks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114077966403580284, guid: 76342bdb0d80f27498d04a2ecb74dc0f,
+        type: 2}
+      propertyPath: tracks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1748375526}
+    - target: {fileID: 114077966403580284, guid: 76342bdb0d80f27498d04a2ecb74dc0f,
+        type: 2}
+      propertyPath: tracks.Array.data[1]
+      value: 
+      objectReference: {fileID: 826920009}
+    - target: {fileID: 114077966403580284, guid: 76342bdb0d80f27498d04a2ecb74dc0f,
+        type: 2}
+      propertyPath: tracks.Array.data[2]
+      value: 
+      objectReference: {fileID: 1546209804}
+    - target: {fileID: 114077966403580284, guid: 76342bdb0d80f27498d04a2ecb74dc0f,
+        type: 2}
+      propertyPath: tracks.Array.data[3]
+      value: 
+      objectReference: {fileID: 1914848235}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 76342bdb0d80f27498d04a2ecb74dc0f, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1868476889 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4616051412236408, guid: 76342bdb0d80f27498d04a2ecb74dc0f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1868476888}
 --- !u!4 &1914848235 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4610131966502598, guid: 614825878b51f4d279d1eed31a0af4ac,
