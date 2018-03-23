@@ -6,6 +6,7 @@ public class TramDriver : MonoBehaviour
 {
     public Transform[] tracks;
     public float speed = 1.0f;
+    public float yPos = -2.0f;
 
     private int _currentTrack;
     private Vector3 _target;
@@ -40,7 +41,7 @@ public class TramDriver : MonoBehaviour
 
 	void ChangeTrack()
 	{
-        _target = new Vector3(tracks[_currentTrack].localPosition.x, -3.8f, 0f);
+        _target = new Vector3(tracks[_currentTrack].localPosition.x, yPos, 0f);
         
 	}
 }

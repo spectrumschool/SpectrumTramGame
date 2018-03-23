@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxReputation: 0
-  tramSpeed: 1
+  tramSpeed: 5
 --- !u!4 &37187046
 Transform:
   m_ObjectHideFlags: 0
@@ -601,7 +601,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4508969578200740, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.76
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4508969578200740, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
       propertyPath: m_LocalPosition.z
