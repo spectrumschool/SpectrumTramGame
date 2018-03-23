@@ -601,7 +601,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4508969578200740, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -2.76
       objectReference: {fileID: 0}
     - target: {fileID: 4508969578200740, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
       propertyPath: m_LocalPosition.z
@@ -627,8 +627,27 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114803098644821504, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
+    - target: {fileID: 114890644132782500, guid: 972ac0a7f2e1d4ddc88480c7733d2992,
+        type: 2}
+      propertyPath: tracks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1748375526}
+    - target: {fileID: 114890644132782500, guid: 972ac0a7f2e1d4ddc88480c7733d2992,
+        type: 2}
+      propertyPath: tracks.Array.data[1]
+      value: 
+      objectReference: {fileID: 826920009}
+    - target: {fileID: 114890644132782500, guid: 972ac0a7f2e1d4ddc88480c7733d2992,
+        type: 2}
+      propertyPath: tracks.Array.data[2]
+      value: 
+      objectReference: {fileID: 1546209804}
+    - target: {fileID: 114890644132782500, guid: 972ac0a7f2e1d4ddc88480c7733d2992,
+        type: 2}
+      propertyPath: tracks.Array.data[3]
+      value: 
+      objectReference: {fileID: 1914848235}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 972ac0a7f2e1d4ddc88480c7733d2992, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1004631529 stripped
@@ -636,27 +655,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4508969578200740, guid: 972ac0a7f2e1d4ddc88480c7733d2992,
     type: 2}
   m_PrefabInternal: {fileID: 1004631528}
---- !u!1 &1004631530 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1466246205074242, guid: 972ac0a7f2e1d4ddc88480c7733d2992,
-    type: 2}
-  m_PrefabInternal: {fileID: 1004631528}
---- !u!114 &1004631531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1004631530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a16ee896dc2247bab3f66b789578a72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tracks:
-  - {fileID: 1748375526}
-  - {fileID: 826920009}
-  - {fileID: 1546209804}
-  - {fileID: 1914848235}
 --- !u!1001 &1035524827
 Prefab:
   m_ObjectHideFlags: 0
