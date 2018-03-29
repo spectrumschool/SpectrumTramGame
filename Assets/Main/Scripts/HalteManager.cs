@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class HalteManager : MonoBehaviour
 {
-    public GameObject haltePrefab;
-    public Transform[] tracks;
+	public SpawnManager spawnManager;
 
     // Use this for initialization
     void Start ()
@@ -27,14 +26,16 @@ public class HalteManager : MonoBehaviour
             int randomSpoor = UnityEngine.Random.Range(0, 4);
             //positie spoor, x waarde
             // y waarde buiten beeld
-            Vector3 spawnPos = new Vector3(tracks[randomSpoor].localPosition.x, 8, 0);
+			Vector2 spawnPos = new Vector3(GameManager.inst.tracks[randomSpoor].localPosition.x, 8);
+//			spawnManager
             //halte aanmaken op deze positie
-            Transform tfHalte = GameObject.Instantiate(haltePrefab, Vector3.zero, Quaternion.identity, this.transform).transform;
-            tfHalte.localPosition = spawnPos;
+			Transform tfHalte = spawnManager.SpawnItem(spawnPos).transform;
+			//GameObject.Instantiate(haltePrefab, Vector3.zero, Quaternion.identity, this.transform).transform;
+            //tfHalte.localPosition = spawnPos;
 
             //random naam toewijzen
-            int randomNaam = UnityEngine.Random.Range(0, GameManager.instance.haltenamen.Length);
-            tfHalte.GetComponent<Halte>().haltenaam.text = GameManager.instance.haltenamen[randomNaam];
+            int randomNaam = UnityEngine.Random.Range(0, GameManager.inst.haltenamen.Length);
+            tfHalte.GetComponent<Halte>().haltenaam.text = GameManager.inst.haltenamen[randomNaam];
 
             yield return new WaitForSeconds(7.0f);
         }

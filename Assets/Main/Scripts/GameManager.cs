@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-	public static GameManager instance = null;
-
-	public int tramSpeed = 1;
+	public int minTramSpeed = 1;
+	public int maxTramSpeed = 10;
 	public string[] haltenamen;
-	public int maxReputation;
+	public Transform[] tracks;
+	public Transform driverView;
+	public Transform passengersView;
+
+	[HideInInspector]
+	public int tramSpeed = 0;
 
 	private int _reputation = 0;
 	public int reputation
@@ -21,21 +25,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	void Awake()
-	{
-		if (instance == null)
-		{
-			instance = this;
-		}
-		else if (instance != this)
-		{
-			Destroy(gameObject);
-		}
-	}
-
 	void Start()
 	{
-		EventManager.ReputationChangedEvent(_reputation);
+		StartCoroutine( StartGameCR() );
 	}
 
 	void Update()
@@ -49,5 +41,16 @@ public class GameManager : MonoBehaviour
 		{
 			reputation -= 1;
 		}
+	}
+
+	IEnumerator StartGameCR()
+	{
+		_reputation = 0;
+		EventManager.ReputationChangedEvent(_reputation);
+		tramSpeed = 0;
+
+		yield return new WaitForSeconds(2.0f);
+
+		tramSpeed = minTramSpeed;
 	}
 }
