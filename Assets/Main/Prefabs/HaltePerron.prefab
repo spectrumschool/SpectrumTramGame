@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634943556893482}
   - component: {fileID: 212819092635522918}
+  - component: {fileID: 61946669904843170}
   m_Layer: 0
   m_Name: PerronRight
   m_TagString: Untagged
@@ -71,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4280601350202104}
   - component: {fileID: 212867421016437780}
+  - component: {fileID: 61689261088386902}
   m_Layer: 0
   m_Name: PerronLeft
   m_TagString: Untagged
@@ -167,6 +169,56 @@ Transform:
   m_Father: {fileID: 4031922495545522}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61689261088386902
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336079011196174}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &61946669904843170
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037345127703626}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &114238954161063018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,6 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba319dc7ba987a4d8f049c522e52641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relativeSpeed: 1
+  gameScreen: 0
 --- !u!114 &114986960254913660
 MonoBehaviour:
   m_ObjectHideFlags: 1
