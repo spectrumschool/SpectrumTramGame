@@ -51,7 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11253595b55c94cda9ba653b707ab1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tramSpeed: 1
+  minTramSpeed: 1
+  maxTramSpeed: 10
+  distanceBetweenStops: 12
+  passengerStopOffset: 5.1
+  maxSpeedDistance: 500
   haltenamen:
   - Spectrumschool
   - Antwerpen Centraal
@@ -61,3 +65,24 @@ MonoBehaviour:
   - Chocoladefabriek
   - Diamant
   - Meir
+  tracks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passengerInfo:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passengers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  driverView: {fileID: 0}
+  passengersView: {fileID: 0}
+  tramDriver: {fileID: 0}
+  spawnHalteDriver: {fileID: 0}
+  spawnHaltePassenger: {fileID: 0}
+  tramSpeed: 1
