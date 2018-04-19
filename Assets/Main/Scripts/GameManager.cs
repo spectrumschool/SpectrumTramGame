@@ -76,7 +76,7 @@ public class GameManager : Singleton<GameManager>
 		if(_boardingCount < 4)
 		{
 			++_boardingCount;
-			passengerInfo[playerIndex].Show(10,_stopNamesQueue.Dequeue());
+			passengerInfo[playerIndex].Show( UnityEngine.Random.Range(20,40) ,_stopNamesQueue.Dequeue());
 			if(_boardingCount == 4)
 			{
 				tramSpeed = minTramSpeed;

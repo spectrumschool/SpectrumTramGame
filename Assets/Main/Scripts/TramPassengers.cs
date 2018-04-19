@@ -18,6 +18,7 @@ public class TramPassengers : MonoBehaviour
 		_tredTimer += Time.deltaTime * GameManager.inst.tramSpeed;
 		if(_tredTimer >= tredInterval)
 		{
+			AudioManager.inst.PlayDoef();
 			_tredTimer -= tredInterval;
 			tredDelta *= -1.0f;
 			transform.Translate(0,tredDelta, 0);

@@ -48,6 +48,7 @@ public class PassengerInfo : MonoBehaviour
 
 	void Update()
 	{
+		if(GameManager.inst.tramSpeed == 0) return;
 		_timer += Time.deltaTime;
 		if(_timer >= 1.0f)
 		{
@@ -56,13 +57,10 @@ public class PassengerInfo : MonoBehaviour
 			txtTimeLeft.text = _timeLeft.ToString();
 			if(_timeLeft == 0)
 			{
-				//TODO: event
-//				EventManager.;
+				EventManager.PassengerTimeoutEvent(playerIndex);
 				this.enabled = false;
 				StartCoroutine(OutOfTimeCR());
-
 			}
-
 		}
 	}
 
