@@ -54,7 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acDoef: {fileID: 8300000, guid: 96576b85530844f3a85c1e1de9ca2570, type: 3}
   acBackground: {fileID: 8300000, guid: a53194526149948d696698f6e6ec141e, type: 3}
-  acMusic: {fileID: 0}
+  acMusic: {fileID: 8300000, guid: 966b5c5faca3a4aa28d0765b4e03ce7c, type: 3}
+  acScream: {fileID: 8300000, guid: aac525722ffd742c696e1dbd53912fbe, type: 3}
 --- !u!114 &114559284025697318
 MonoBehaviour:
   m_ObjectHideFlags: 1

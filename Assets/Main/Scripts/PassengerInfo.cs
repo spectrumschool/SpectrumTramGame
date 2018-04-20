@@ -27,6 +27,31 @@ public class PassengerInfo : MonoBehaviour
 	{
 	}
 
+	void OnEnable()
+	{
+		EventManager.OnPassengerHitStop += OnPassengerHitStop;
+	}
+
+	void OnPassengerHitStop (int index, string haltenaam)
+	{
+		if(index == playerIndex)
+		{
+			if(haltenaam.Equals(txtHalteNaam.text))
+			{
+				//TODO: score add
+			}
+			else
+			{
+				AudioManager.inst.PlayScream();
+			}
+		}
+	}
+
+	void OnDisable()
+	{
+		EventManager.OnPassengerHitStop -= OnPassengerHitStop;
+	}
+
 	public void Show(int time, string haltenaam)
 	{
 		_timeLeft = time;

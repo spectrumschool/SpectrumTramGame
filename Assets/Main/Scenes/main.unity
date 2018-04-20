@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 446972469}
   - component: {fileID: 446972468}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,16 +1054,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114913649587235778, guid: bca3a0780c1617441bc0684ef0f37d82,
-        type: 2}
-      propertyPath: passengers.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114913649587235778, guid: bca3a0780c1617441bc0684ef0f37d82,
-        type: 2}
-      propertyPath: passengerInfo.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4527582588069844, guid: bca3a0780c1617441bc0684ef0f37d82, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1181,16 +1171,6 @@ Prefab:
       propertyPath: spawnHaltePassenger
       value: 
       objectReference: {fileID: 440945201}
-    - target: {fileID: 114913649587235778, guid: bca3a0780c1617441bc0684ef0f37d82,
-        type: 2}
-      propertyPath: minTramSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114913649587235778, guid: bca3a0780c1617441bc0684ef0f37d82,
-        type: 2}
-      propertyPath: maxTramSpeed
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bca3a0780c1617441bc0684ef0f37d82, type: 2}
   m_IsPrefabParent: 0
@@ -1517,11 +1497,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114128960522033106, guid: bbf0ee79c0b6c422aa3b98a6755ff772,
-        type: 2}
-      propertyPath: acMusic
-      value: 
-      objectReference: {fileID: 8300000, guid: 4b1a3441b01394fa2857c070d3816b33, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbf0ee79c0b6c422aa3b98a6755ff772, type: 2}
   m_IsPrefabParent: 0

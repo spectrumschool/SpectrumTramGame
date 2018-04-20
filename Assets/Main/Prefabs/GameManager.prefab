@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minTramSpeed: 1
-  maxTramSpeed: 10
+  maxTramSpeed: 5
   distanceBetweenStops: 12
   passengerStopOffset: 5.1
   maxSpeedDistance: 500

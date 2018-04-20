@@ -7,6 +7,7 @@ public class AudioManager : Singleton<AudioManager>
 	public AudioClip acDoef;
 	public AudioClip acBackground;
 	public AudioClip acMusic;
+	public AudioClip acScream;
 
 	void Start()
 	{
@@ -22,5 +23,10 @@ public class AudioManager : Singleton<AudioManager>
 	public void PlayDoef()
 	{
 		SoundKit.instance.playOneShot (acDoef);
+	}
+
+	public void PlayScream()
+	{
+		SoundKit.instance.playOneShot (acScream);
 	}
 }

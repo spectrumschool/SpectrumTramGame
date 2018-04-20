@@ -22,4 +22,10 @@ public static class EventManager
 	{
 		OnPassengerTimeout(passengerIndex);
 	}
+
+	public static event Action<int,string> OnPassengerHitStop = delegate {};
+	public static void PassengerHitStopEvent(int playerIndex, string haltenaam)
+	{
+		OnPassengerHitStop(playerIndex, haltenaam);
+	}
 }

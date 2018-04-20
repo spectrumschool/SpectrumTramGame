@@ -115,6 +115,10 @@ public class GameManager : Singleton<GameManager>
 			int numStops = UnityEngine.Random.Range(1,4);
 			for (int i = 0; i < 4; i++)
 			{
+//				string halteNaam = "";
+//				if(
+
+
 				if(!string.IsNullOrEmpty(_nextStopNames[_shuffledTracks[i]]))
 				{
 					_stopNamesQueue.Enqueue(_nextStopNames[_shuffledTracks[i]]);

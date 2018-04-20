@@ -68,8 +68,16 @@ public class Passenger : MonoBehaviour
 			_inTram = false;
 			transform.position = target;
 			_sprite.sortingOrder = 7;
-//			transform.ZKpositionTo(target,.3f).setEaseType(EaseType.ExpoIn).start();
-			//.setCompletionHandler(OnHitFloor)
+
+			Halte halte = hit.collider.transform.parent.GetComponent<Halte>();
+			if(halte != null)
+			{
+				EventManager.PassengerHitStopEvent(playerIndex,halte.haltenaam.text);
+			}
+			else
+			{
+				AudioManager.inst.PlayScream();
+			}
 		}
 	}
 
