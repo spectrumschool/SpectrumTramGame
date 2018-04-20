@@ -58,6 +58,7 @@ public class GameManager : Singleton<GameManager>
 
 	void Start()
 	{
+		Cursor.visible = false;
 		StartCoroutine( StartGameCR() );
 	}
 
