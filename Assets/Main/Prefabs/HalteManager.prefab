@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4616051412236408}
   - component: {fileID: 114077966403580284}
+  - component: {fileID: 114179266716617298}
   m_Layer: 0
   m_Name: HalteManager
   m_TagString: Untagged
@@ -51,5 +52,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb4962341b9aae4daf0ff1705cb1bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  haltePrefab: {fileID: 1843523174165314, guid: 254e6e831b6b4d64284db3f099cd79e0,
-    type: 2}
+  spawnManager: {fileID: 114179266716617298}
+--- !u!114 &114179266716617298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1776565320404332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3732678074d734d03b9ffeddc892ad58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 114950237459142240, guid: 254e6e831b6b4d64284db3f099cd79e0, type: 2}
+  poolSize: 8

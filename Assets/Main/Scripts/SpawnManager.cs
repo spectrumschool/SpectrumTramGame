@@ -36,7 +36,7 @@ public class SpawnManager : MonoBehaviour
 		{
 			for (int i = _spawnedItems.Count-1; i >= 0; --i)
 			{
-				if(_spawnedItems[i].transform.localPosition.y < -8.0f)
+				if(_spawnedItems[i].transform.localPosition.y < -16.0f)
 				{
 					var item = _spawnedItems[i];
 					ObjectPool.Instance.PushToPool(ref item);
@@ -48,7 +48,7 @@ public class SpawnManager : MonoBehaviour
 		{
 			for (int i = _spawnedItems.Count-1; i >= 0; --i)
 			{
-				if(_spawnedItems[i].transform.localPosition.x < -12.0f)
+				if(_spawnedItems[i].transform.localPosition.x < -24.0f)
 				{
 					var item = _spawnedItems[i];
 					ObjectPool.Instance.PushToPool(ref item);

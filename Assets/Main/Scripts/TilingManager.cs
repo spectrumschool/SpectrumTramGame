@@ -16,20 +16,20 @@ public class TilingManager : MonoBehaviour
 		FillScreen();
 	}
 
-	void Update ()
+	void LateUpdate ()
 	{
 		if(spawnManager.prefab.gameScreen == GameScreen.Driver)
 		{
-			if(_lastItem.localPosition.y <= _nextPos)
+			if(_lastItem.localPosition.y <=  8.0f)
 			{
-				_lastItem = spawnManager.SpawnItem(new Vector2(startingPos.x,_nextPos + spacing)).transform;
+				_lastItem = spawnManager.SpawnItem(new Vector2(startingPos.x,_lastItem.localPosition.y + spacing)).transform;
 			}
 		}
 		else
 		{
-			if(_lastItem.localPosition.x <= _nextPos)
+			if(_lastItem.localPosition.x <= 12.0f)
 			{
-				_lastItem = spawnManager.SpawnItem(new Vector2(_nextPos + spacing,startingPos.y)).transform;
+				_lastItem = spawnManager.SpawnItem(new Vector2(_lastItem.localPosition.x + spacing,startingPos.y)).transform;
 			}
 		}
 
@@ -46,7 +46,7 @@ public class TilingManager : MonoBehaviour
 				_lastItem = spawnManager.SpawnItem(new Vector2(startingPos.x,currPos)).transform;
 				currPos += spacing;
 			}
-			_nextPos = currPos - 2 * spacing;
+//			_nextPos = currPos - 2 * spacing;
 		}
 		else
 		{
@@ -56,7 +56,7 @@ public class TilingManager : MonoBehaviour
 				_lastItem = spawnManager.SpawnItem(new Vector2(currPos, startingPos.y)).transform;
 				currPos += spacing;
 			}
-			_nextPos = currPos - 2 * spacing;
+//			_nextPos = currPos - 2 * spacing;
 		}
 	}
 }

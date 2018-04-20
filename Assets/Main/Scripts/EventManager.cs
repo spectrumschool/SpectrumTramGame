@@ -10,4 +10,16 @@ public static class EventManager
 	{
 		OnReputationChanged(newAmount);
 	}
+
+	public static event Action<int> OnEnterTramComplete;
+	public static void EnterTramCompleteEvent(int passengerIndex)
+	{
+		OnEnterTramComplete(passengerIndex);
+	}
+
+	public static event Action<int> OnPassengerTimeout;
+	public static void PassengerTimeoutEvent(int passengerIndex)
+	{
+		OnPassengerTimeout(passengerIndex);
+	}
 }

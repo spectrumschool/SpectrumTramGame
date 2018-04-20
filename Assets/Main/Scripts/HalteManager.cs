@@ -34,7 +34,7 @@ public class HalteManager : MonoBehaviour
             //tfHalte.localPosition = spawnPos;
 
             //random naam toewijzen
-            int randomNaam = UnityEngine.Random.Range(0, GameManager.inst.haltenamen.Length);
+            int randomNaam = UnityEngine.Random.Range(0, GameManager.inst.haltenamen.Count);
             tfHalte.GetComponent<Halte>().haltenaam.text = GameManager.inst.haltenamen[randomNaam];
 
             yield return new WaitForSeconds(7.0f);

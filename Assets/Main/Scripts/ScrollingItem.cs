@@ -29,7 +29,7 @@ public class ScrollingItem : MonoBehaviour, IPoolObject
 		}
 		else
 		{
-			float xTranslation = Time.deltaTime * -relativeSpeed * GameManager.inst.tramSpeed;
+			float xTranslation = Time.deltaTime * -relativeSpeed * GameManager.inst.tramSpeed * 4.0f;
 			transform.Translate(xTranslation, 0, 0);
 		}
 	}
