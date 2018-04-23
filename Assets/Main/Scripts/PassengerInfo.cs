@@ -30,6 +30,13 @@ public class PassengerInfo : MonoBehaviour
 	void OnEnable()
 	{
 		EventManager.OnPassengerHitStop += OnPassengerHitStop;
+		EventManager.OnPassengerHitRails += OnPassengerHitRails;
+	}
+
+	void OnDisable()
+	{
+		EventManager.OnPassengerHitStop -= OnPassengerHitStop;
+		EventManager.OnPassengerHitRails -= OnPassengerHitRails;
 	}
 
 	void OnPassengerHitStop (int index, string haltenaam)
@@ -38,18 +45,27 @@ public class PassengerInfo : MonoBehaviour
 		{
 			if(haltenaam.Equals(txtHalteNaam.text))
 			{
-				//TODO: score add
+				GameManager.inst.score += _timeLeft;
+				GameManager.inst.reputation += 1;
+				Hide();
 			}
 			else
 			{
 				AudioManager.inst.PlayScream();
+				GameManager.inst.reputation -= 1;
+				Hide();
 			}
 		}
 	}
 
-	void OnDisable()
+	void OnPassengerHitRails (int index)
 	{
-		EventManager.OnPassengerHitStop -= OnPassengerHitStop;
+		if(index == playerIndex)
+		{
+			AudioManager.inst.PlayScream();
+			GameManager.inst.reputation -= 1;
+			Hide();
+		}
 	}
 
 	public void Show(int time, string haltenaam)
@@ -68,13 +84,14 @@ public class PassengerInfo : MonoBehaviour
 
 	public void Hide()
 	{
+		this.enabled = false;
 		transform.ZKpositionTo(_upTarget).start();
 	}
 
 	void Update()
 	{
 		if(GameManager.inst.tramSpeed == 0) return;
-		_timer += Time.deltaTime;
+		_timer += Time.deltaTime * GameManager.inst.tramSpeed;
 		if(_timer >= 1.0f)
 		{
 			_timer -= 1.0f;

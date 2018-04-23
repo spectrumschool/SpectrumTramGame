@@ -11,6 +11,12 @@ public static class EventManager
 		OnReputationChanged(newAmount);
 	}
 
+	public static event Action<int> OnScoreChanged = delegate {};
+	public static void ScoreChangedEvent(int newAmount)
+	{
+		OnScoreChanged(newAmount);
+	}
+
 	public static event Action<int> OnEnterTramComplete = delegate {};
 	public static void EnterTramCompleteEvent(int passengerIndex)
 	{
@@ -28,4 +34,17 @@ public static class EventManager
 	{
 		OnPassengerHitStop(playerIndex, haltenaam);
 	}
+
+	public static event Action<int> OnPassengerHitRails = delegate {};
+	public static void PassengerHitRailsEvent(int playerIndex)
+	{
+		OnPassengerHitRails(playerIndex);
+	}
+
+	public static event Action OnGameOver = delegate {};
+	public static void GameOverEvent()
+	{
+		OnGameOver();
+	}
+
 }

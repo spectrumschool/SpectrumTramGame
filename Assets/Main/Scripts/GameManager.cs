@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+	float DEBUGTIME = 0;
+
 	public float minTramSpeed = 1;
 	public float maxTramSpeed = 10;
+	public float passengerViewSpeedMult = 4;
 	public float distanceBetweenStops = 8;
 	public float passengerStopOffset = 4;
 	public float maxSpeedDistance = 100.0f;
-	public List<string> haltenamen;
+	public int timeBetweenStops = 30;
+	public int timeBetweenStopsMargin = 5;
+	public StopNameManager stopNameManager;
 	public Transform[] tracks;
 	public PassengerInfo[] passengerInfo;
 	public Passenger[] passengers;
@@ -34,8 +39,6 @@ public class GameManager : Singleton<GameManager>
 	Transform _tfLastStopPassenger;
 
 	System.Action _updateHandler = delegate {};
-
-	Queue<string> _stopNamesQueue;
 	List<int> _shuffledTracks;
 	private int _reputation = 0;
 	public int reputation
@@ -43,17 +46,41 @@ public class GameManager : Singleton<GameManager>
 		get { return _reputation; }
 		set
 		{
-			_reputation = value;
+			if(value != _reputation)
+			{
+				if(value > _reputation) SoundKit.instance.playOneShot(AudioManager.inst.acPositive);
+				else SoundKit.instance.playOneShot(AudioManager.inst.acNegative);
+
+				if(value == 0)
+				{
+					EventManager.GameOverEvent();
+				}
+			}
+
+			_reputation = Mathf.Clamp(value,0,6);
 			EventManager.ReputationChangedEvent(_reputation);
+
+
+		}
+	}
+
+	private int _score = 0;
+	public int score
+	{
+		get { return _score; }
+		set
+		{
+			_score = value;
+			EventManager.ScoreChangedEvent(_score);
 		}
 	}
 
 	void Awake()
 	{
-		_stopNamesQueue = new Queue<string>();
 		_nextStopNames = new string[4];
 		_shuffledTracks = new List<int>(){0,1,2,3};
 		_playerInput = new string[]{"P1","P2","P3","P4"};
+		stopNameManager.Setup();
 	}
 
 	void Start()
@@ -65,71 +92,85 @@ public class GameManager : Singleton<GameManager>
 	void OnEnable()
 	{
 		EventManager.OnEnterTramComplete += OnEnterTramComplete;
+		EventManager.OnGameOver += OnGameOver;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnEnterTramComplete -= OnEnterTramComplete;
+		EventManager.OnGameOver -= OnGameOver;
+	}
+
+	void OnGameOver()
+	{
+		this.enabled = false;
+		tramSpeed = 0;
 	}
 
 	void OnEnterTramComplete (int playerIndex)
 	{
+		RequestedStop rs = stopNameManager.CharArrived();
+		passengerInfo[playerIndex].Show( rs.urgency * timeBetweenStops + timeBetweenStopsMargin, rs.stopName);
+
 		if(_boardingCount < 4)
 		{
 			++_boardingCount;
-			passengerInfo[playerIndex].Show( UnityEngine.Random.Range(20,40) ,_stopNamesQueue.Dequeue());
+
+			//all aboard, start moving!
 			if(_boardingCount == 4)
 			{
 				tramSpeed = minTramSpeed;
 				_updateHandler = UpdateMovingTram;
 			}
 		}
-		else
-		{
-
-		}
 	}
 
 	void Update()
 	{
+		DEBUGTIME += Time.deltaTime * tramSpeed;
+
 		_updateHandler();
 	}
 		
 	void UpdateMovingTram()
 	{
-		//update the distance travelled
+		//update the distance travelled & tramspeed
 		if(tramSpeed > 0)
 		{
 			distanceTravelled += Time.deltaTime * tramSpeed;
 			tramSpeed = Mathf.Lerp(minTramSpeed,maxTramSpeed,distanceTravelled/maxSpeedDistance);
 		}
 
+		//place stops & refill passengers
 		if(distanceTravelled >= _nextStopDriver)
 		{
-			_nextStopDriver += distanceBetweenStops;
-
-
-//			float yVal = (_tfLastStopDriver == null ? distanceBetweenStops : _tfLastStopDriver.localPosition.y + distanceBetweenStops);
-
-			_shuffledTracks.Shuffle();
-			int numStops = UnityEngine.Random.Range(1,4);
+			//refill passengers
 			for (int i = 0; i < 4; i++)
 			{
-//				string halteNaam = "";
-//				if(
-
-
-				if(!string.IsNullOrEmpty(_nextStopNames[_shuffledTracks[i]]))
+				if(!passengers[i].enabled)
 				{
-					_stopNamesQueue.Enqueue(_nextStopNames[_shuffledTracks[i]]);
+					passengers[i].EnterTram();
 				}
+			}
 
-				if(i < numStops)
+//			Debug.Log(DEBUGTIME.ToString("F"));
+
+			_nextStopDriver += distanceBetweenStops;
+			_shuffledTracks.Shuffle();
+
+			List<string> stopNames = stopNameManager.PlaceStops();
+			if(stopNames.Count == 0)
+			{
+				Debug.LogWarning("NO STOPNAMES!");
+			}
+
+			for (int i = 0; i < 4; i++)
+			{
+
+				if(i < stopNames.Count)
 				{
 					//TODO: assign halte naam
-					_nextStopNames[_shuffledTracks[i]] = _stopNamesQueue.Dequeue();
-
-
+					_nextStopNames[_shuffledTracks[i]] = stopNames[i];
 
 					_tfLastStopDriver = spawnHalteDriver.SpawnItem(new Vector2(tracks[_shuffledTracks[i]].localPosition.x, 5.0f)).transform;
 					_tfLastStopDriver.GetComponent<Halte>().haltenaam.text = _nextStopNames[_shuffledTracks[i]];
@@ -145,12 +186,9 @@ public class GameManager : Singleton<GameManager>
 		{
 			_nextStopPassenger += distanceBetweenStops;
 
-			//halte naam based on track
-
-			//if there is a name
+			//halte naam based on track, no name => no stop!
 			if(!string.IsNullOrEmpty(_nextStopNames[tramDriver.currentTrack]))
 			{
-//				float xVal = (_tfLastStopPassenger == null ? distanceBetweenStops : _tfLastStopPassenger.localPosition.x + distanceBetweenStops);
 				//spawn halte Passenger
 				_tfLastStopPassenger = spawnHaltePassenger.SpawnItem(new Vector2(8.9f, 0)).transform;
 				_tfLastStopPassenger.GetComponent<Halte>().haltenaam.text = _nextStopNames[tramDriver.currentTrack];
@@ -168,24 +206,18 @@ public class GameManager : Singleton<GameManager>
 			}
 		}
 	}
-		
-
 
 	IEnumerator StartGameCR()
 	{
-
-
-		//keep a shuffled queue of names
-		haltenamen.Shuffle();
-		_stopNamesQueue.Clear();
-		_stopNamesQueue = new Queue<string>(haltenamen);
+		stopNameManager.StartGame();
 
 		//reset values, stop tram
-		reputation = 2;
+		reputation = 3;
+		score = 0;
 		distanceTravelled = 0;
 		tramSpeed = 0;
-		_nextStopDriver = distanceBetweenStops;
-		_nextStopPassenger = distanceBetweenStops + passengerStopOffset;
+		_nextStopDriver = 0; //distanceBetweenStops;
+		_nextStopPassenger = passengerStopOffset; //distanceBetweenStops + passengerStopOffset;
 
 
 		_updateHandler = UpdateBoarding;
@@ -196,4 +228,11 @@ public class GameManager : Singleton<GameManager>
 		//todo: do stuff
 
 	}
+
+//	void OnGUI()
+//	{
+//		GUIStyle style = new GUIStyle();
+//		style.fontSize = 120;
+//		GUILayout.Label(DEBUGTIME.ToString("F"), style);
+//	}
 }

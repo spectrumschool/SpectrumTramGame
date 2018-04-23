@@ -47,13 +47,15 @@ public class Passenger : MonoBehaviour
 
 	public void EnterTram()
 	{
+		SoundKit.instance.playOneShot(AudioManager.inst.acHopOn);
 		this.enabled = true;
 		_onTheFloor = false;
 		_inTram = false;
 		_sprite.sortingOrder = 2;
 		transform.parent = _tram;
 		transform.localPosition = new Vector3(-0.24f, _targetPosition.y,0);
-		transform.ZKlocalPositionTo(_targetPosition,1.0f).setEaseType(EaseType.QuadInOut).setCompletionHandler(OnEnterTramComplete).start();
+		float duration = (GameManager.inst.tramSpeed == 0) ? 1.0f : 1.0f/GameManager.inst.tramSpeed;
+		transform.ZKlocalPositionTo(_targetPosition,duration).setEaseType(EaseType.QuadInOut).setCompletionHandler(OnEnterTramComplete).start();
 
 	}
 
@@ -76,7 +78,7 @@ public class Passenger : MonoBehaviour
 			}
 			else
 			{
-				AudioManager.inst.PlayScream();
+				EventManager.PassengerHitRailsEvent(playerIndex);
 			}
 		}
 	}
@@ -97,7 +99,7 @@ public class Passenger : MonoBehaviour
 	{
 		if(_onTheFloor)
 		{
-			float xTranslation = Time.deltaTime * GameManager.inst.tramSpeed * -4.0f;
+			float xTranslation = Time.deltaTime * GameManager.inst.tramSpeed * -GameManager.inst.passengerViewSpeedMult;
 			transform.Translate(xTranslation, 0, 0);
 
 			if(transform.position.x < -20.0f)

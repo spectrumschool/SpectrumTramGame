@@ -56,6 +56,30 @@ MonoBehaviour:
   distanceBetweenStops: 12
   passengerStopOffset: 5.1
   maxSpeedDistance: 500
+  timeBetweenStops: 30
+  timeBetweenStopsMargin: 5
+  stopNameManager:
+    stopNames:
+    - Spectrum
+    - Fortveld
+    - Ertbrugge
+    - Havik
+    - Ruggeveld
+    - Hermans
+    - Craeybeckx
+    - Confortalei
+    - Lakborslei
+    - Sportpaleis
+    - Schijnpoort
+    - Handel
+    - Astrid
+    - Meir
+    - Groenplaats
+    - Elisabeth
+    - Opera
+    - Halewijn
+    - Sporthal
+    - Diamant
   haltenamen:
   - Spectrumschool
   - Antwerpen Centraal

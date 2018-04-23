@@ -8,6 +8,9 @@ public class AudioManager : Singleton<AudioManager>
 	public AudioClip acBackground;
 	public AudioClip acMusic;
 	public AudioClip acScream;
+	public AudioClip acHopOn;
+	public AudioClip acPositive;
+	public AudioClip acNegative;
 
 	void Start()
 	{
