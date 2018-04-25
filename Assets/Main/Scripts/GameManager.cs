@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -20,7 +21,6 @@ public class GameManager : Singleton<GameManager>
 	public Passenger[] passengers;
 	public Transform driverView;
 	public Transform passengersView;
-
 	public TramDriver tramDriver;
 	public SpawnManager spawnHalteDriver;
 	public SpawnManager spawnHaltePassenger;

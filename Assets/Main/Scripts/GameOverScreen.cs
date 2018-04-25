@@ -43,7 +43,7 @@ public class GameOverScreen : MonoBehaviour
 
 		imgFade.enabled = true;
 		txtTitle.enabled = true;
-		imgFade.color = new Color(0,0,0,0);
+		imgFade.color = new Color(imgFade.color.r,imgFade.color.g,imgFade.color.b,0);
 		imgFade.ZKalphaTo(1,1.0f).start();
 
 		yield return new WaitForSeconds(.5f);
@@ -55,6 +55,7 @@ public class GameOverScreen : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(3.0f);
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+//		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
