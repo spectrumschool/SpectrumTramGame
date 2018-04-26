@@ -29,6 +29,26 @@ public class SpawnManager : MonoBehaviour
 		
 	}
 
+	void OnEnable()
+	{
+		EventManager.OnResetGame += OnResetGame;
+	}
+
+	void OnDisable()
+	{
+		EventManager.OnResetGame -= OnResetGame;
+	}
+
+	void OnResetGame()
+	{
+		for (int i = _spawnedItems.Count-1; i >= 0; --i)
+		{
+			var item = _spawnedItems[i];
+			ObjectPool.Instance.PushToPool(ref item);
+			_spawnedItems.RemoveAt(i);
+		}
+	}
+
 	void Update()
 	{
 		

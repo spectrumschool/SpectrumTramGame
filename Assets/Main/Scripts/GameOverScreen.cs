@@ -25,16 +25,25 @@ public class GameOverScreen : MonoBehaviour
 	void OnEnable()
 	{
 		EventManager.OnGameOver += OnGameOver;
+		EventManager.OnResetGame += OnResetGame;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnGameOver -= OnGameOver;
+		EventManager.OnResetGame -= OnResetGame;
 	}
 
 	void OnGameOver()
 	{
 		StartCoroutine(GameOverCR());
+	}
+
+	void OnResetGame()
+	{
+		imgFade.color = new Color(imgFade.color.r,imgFade.color.g,imgFade.color.b,0);
+		imgFade.enabled = false;
+		txtTitle.enabled = false;
 	}
 
 	IEnumerator GameOverCR()

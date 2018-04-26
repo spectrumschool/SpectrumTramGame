@@ -16,6 +16,27 @@ public class TilingManager : MonoBehaviour
 		FillScreen();
 	}
 
+	void OnEnable()
+	{
+		EventManager.OnResetGame += OnResetGame;
+	}
+
+	void OnDisable()
+	{
+		EventManager.OnResetGame -= OnResetGame;
+	}
+
+	void OnResetGame()
+	{
+		StartCoroutine(ResetGameCR());
+	}
+
+	IEnumerator ResetGameCR()
+	{
+		yield return null;
+		FillScreen();
+	}
+
 	void LateUpdate ()
 	{
 		if(spawnManager.prefab.gameScreen == GameScreen.Driver)

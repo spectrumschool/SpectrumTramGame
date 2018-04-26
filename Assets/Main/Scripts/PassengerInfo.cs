@@ -19,8 +19,8 @@ public class PassengerInfo : MonoBehaviour
 	{
 		_upTarget = new Vector3(transform.position.x,12.0f,0);
 		_downTarget = new Vector3(transform.position.x,0,0);
-		transform.position = _upTarget;
-		this.enabled = false;
+
+		OnResetGame();
 	}
 
 	void Start()
@@ -31,12 +31,27 @@ public class PassengerInfo : MonoBehaviour
 	{
 		EventManager.OnPassengerHitStop += OnPassengerHitStop;
 		EventManager.OnPassengerHitRails += OnPassengerHitRails;
+		EventManager.OnGameOver += OnGameOver;
+		EventManager.OnResetGame += OnResetGame;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnPassengerHitStop -= OnPassengerHitStop;
 		EventManager.OnPassengerHitRails -= OnPassengerHitRails;
+		EventManager.OnGameOver -= OnGameOver;
+		EventManager.OnResetGame -= OnResetGame;
+	}
+
+	void OnResetGame()
+	{
+		transform.position = _upTarget;
+		this.enabled = false;
+	}
+
+	void OnGameOver()
+	{
+		Hide();
 	}
 
 	void OnPassengerHitStop (int index, string haltenaam)
@@ -45,8 +60,8 @@ public class PassengerInfo : MonoBehaviour
 		{
 			if(haltenaam.Equals(txtHalteNaam.text))
 			{
-				GameManager.inst.score += _timeLeft;
 				GameManager.inst.reputation += 1;
+				GameManager.inst.score += GameManager.inst.reputation;
 				Hide();
 			}
 			else
@@ -78,6 +93,7 @@ public class PassengerInfo : MonoBehaviour
 
 		_timer = 0;
 		transform.position = _upTarget;
+		ZestKit.instance.stopAllTweensWithTarget(transform);
 		transform.ZKpositionTo(_downTarget,0.7f).setEaseType(EaseType.BounceOut).start();
 		this.enabled = true;
 	}
@@ -85,6 +101,7 @@ public class PassengerInfo : MonoBehaviour
 	public void Hide()
 	{
 		this.enabled = false;
+		ZestKit.instance.stopAllTweensWithTarget(transform);
 		transform.ZKpositionTo(_upTarget).start();
 	}
 

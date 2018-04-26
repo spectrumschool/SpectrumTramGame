@@ -19,10 +19,25 @@ public class TramDriver : MonoBehaviour
 
     void Start()
 	{
+		OnResetGame();
+	}
+
+	void OnEnable()
+	{
+		EventManager.OnResetGame += OnResetGame;
+	}
+
+	void OnDisable()
+	{
+		EventManager.OnResetGame -= OnResetGame;
+	}
+
+	void OnResetGame()
+	{
 		_inAnimation = false;
 		sprtTramWhite.enabled = false;
-        //move to starting track
-        currentTrack = 2;
+		//move to starting track
+		currentTrack = 2;
 		ChangeTrack();
 	}
 

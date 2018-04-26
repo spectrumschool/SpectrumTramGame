@@ -7,28 +7,44 @@ using System;
 
 public class HighscoreUI : MonoBehaviour
 {
+	static string BELL = "Bell";
+	
 	public HighscoreManager highscoreManager;
 	public Text[] txtDaily;
 	public Text[] txtAllTime;
+	public Text[] txtPressAny;
 	public Color clrNeutral = Color.white;
 	public Color clrBack = Color.gray;
 	public Color clrFill = Color.cyan;
 	public Color clrHighlight = Color.magenta;
 	public Color clrAllTime = Color.yellow;
 
+	bool _canResetGame;
+
 	void Start()
 	{
+		_canResetGame = false;
 	}
 
 	void OnEnable()
 	{
-		EventManager.OnGameOver -= OnGameOver;
 		EventManager.OnGameOver += OnGameOver;
+		EventManager.OnResetGame += OnResetGame;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnGameOver -= OnGameOver;
+		EventManager.OnResetGame -= OnResetGame;
+	}
+
+	void Update()
+	{
+		if(_canResetGame && Input.GetButtonDown(BELL))
+		{
+			_canResetGame = false;
+			EventManager.ResetGameEvent();
+		}
 	}
 
 	void OnGameOver()
@@ -38,10 +54,17 @@ public class HighscoreUI : MonoBehaviour
 		StartCoroutine(OnGameOverCR());
 	}
 
+	void OnResetGame()
+	{
+		for (int i = 0; i < txtDaily.Length; i++) { txtDaily[i].enabled = false; txtDaily[i].text = "";}
+		for (int i = 0; i < txtAllTime.Length; i++) { txtAllTime[i].enabled = false; txtAllTime[i].text = "";}
+		for (int i = 0; i < txtPressAny.Length; i++) { txtPressAny[i].enabled = false;}
+	}
+
 	IEnumerator OnGameOverCR()
 	{
 		//daily
-		yield return null;
+		yield return new WaitForSeconds(1.0f);
 
 		StringBuilder sb = new StringBuilder("");
 		Append(sb,clrNeutral,"Highscores");
@@ -90,32 +113,14 @@ public class HighscoreUI : MonoBehaviour
 			Append(sb,clrBack,	dt.ToString("dd/MM/yyyy"));
 			Append(sb,clrFill,	"]\n");
 
-			//-----------
-//			if(i < highscoreManager.maxEntries)
-//			{
-//				sb.Append("<color=cyan>[</color>"+(i+1).ToString("D2")+"<color=cyan>] --- </color>");
-//			}
-//			else
-//			{
-//				sb.Append("<color=cyan>score --- </color>");
-//			}
-//			if(i == highscoreManager.lastAddedIndexMain) sb.Append("<color=magenta>");
-//			sb.Append(highscoreManager.highscoreListMain.highscores[i].score.ToString("D4"));
-//			if(i == highscoreManager.lastAddedIndexMain) sb.Append("</color>");
-//			DateTime dt = DateTime.Parse(highscoreManager.highscoreListMain.highscores[i].sDateTime);
-//			sb.Append("<color=cyan> --- [</color><color=grey>"+dt.ToString("dd/MM/yyyy")+"</color><color=cyan>]</color>");
-//			sb.Append("\n");
-
 			for (int j = 0; j < txtAllTime.Length; j++) txtAllTime[j].text = sb.ToString();
 		}
 
 		highscoreManager.SaveHighscores();
-	}
 
-	public void Hide()
-	{
-		for (int i = 0; i < txtDaily.Length; i++) txtDaily[i].enabled = false;
-		for (int i = 0; i < txtAllTime.Length; i++) txtAllTime[i].enabled = false;
+		yield return new WaitForSeconds(3.0f);
+		for (int i = 0; i < txtPressAny.Length; i++) txtPressAny[i].enabled = true;
+		_canResetGame = true;
 	}
 
 	public void Append(StringBuilder sb, Color color, string text)

@@ -34,6 +34,7 @@ public class StopNameManager
 		stopNames.Shuffle();
 		_stopNamesQueue.Clear();
 		_stopNamesQueue = new Queue<string>(stopNames);
+		_requestedStops.Clear();
 	}
 
 	public RequestedStop CharArrived()

@@ -93,18 +93,25 @@ public class GameManager : Singleton<GameManager>
 	{
 		EventManager.OnEnterTramComplete += OnEnterTramComplete;
 		EventManager.OnGameOver += OnGameOver;
+		EventManager.OnResetGame += OnResetGame;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnEnterTramComplete -= OnEnterTramComplete;
 		EventManager.OnGameOver -= OnGameOver;
+		EventManager.OnResetGame -= OnResetGame;
 	}
 
 	void OnGameOver()
 	{
-		this.enabled = false;
+		_updateHandler = delegate {};
 		tramSpeed = 0;
+	}
+
+	void OnResetGame()
+	{
+		StartCoroutine( StartGameCR() );
 	}
 
 	void OnEnterTramComplete (int playerIndex)
@@ -216,9 +223,9 @@ public class GameManager : Singleton<GameManager>
 		score = 0;
 		distanceTravelled = 0;
 		tramSpeed = 0;
-		_nextStopDriver = 0; //distanceBetweenStops;
-		_nextStopPassenger = passengerStopOffset; //distanceBetweenStops + passengerStopOffset;
-
+		_boardingCount = 0;
+		_nextStopDriver = 0;
+		_nextStopPassenger = passengerStopOffset;
 
 		_updateHandler = UpdateBoarding;
 

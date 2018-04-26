@@ -11,6 +11,9 @@ public class AudioManager : Singleton<AudioManager>
 	public AudioClip acHopOn;
 	public AudioClip acPositive;
 	public AudioClip acNegative;
+	public AudioClip acBell;
+
+	static string BELL = "Bell";
 
 	void Start()
 	{
@@ -31,5 +34,13 @@ public class AudioManager : Singleton<AudioManager>
 	public void PlayScream()
 	{
 		SoundKit.instance.playOneShot (acScream);
+	}
+
+	void Update()
+	{
+		if(Input.GetButtonDown(BELL))
+		{
+			SoundKit.instance.playOneShot (acBell);
+		}
 	}
 }

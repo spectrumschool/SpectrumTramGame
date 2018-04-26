@@ -47,4 +47,9 @@ public static class EventManager
 		OnGameOver();
 	}
 
+	public static event Action OnResetGame = delegate {};
+	public static void ResetGameEvent()
+	{
+		OnResetGame();
+	}
 }

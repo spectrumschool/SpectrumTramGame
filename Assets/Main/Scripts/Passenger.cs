@@ -20,21 +20,31 @@ public class Passenger : MonoBehaviour
 	{
 		_targetPosition = transform.localPosition;
 		_tram = transform.parent;
-		onBoard = false;
-		//offscreen
-		transform.position = new Vector3(0,50,0);
 		_button = "P"+(playerIndex+1).ToString();
 		_sprite = GetComponent<SpriteRenderer>();
+		OnResetGame();
 	}
 
 	void OnEnable()
 	{
 		EventManager.OnPassengerTimeout += OnPassengerTimeout;
+		EventManager.OnResetGame += OnResetGame;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnPassengerTimeout -= OnPassengerTimeout;
+		EventManager.OnResetGame -= OnResetGame;
+	}
+
+	void OnResetGame()
+	{
+		_onTheFloor = false;
+		_inTram = false;
+		onBoard = false;
+		//offscreen
+		transform.position = new Vector3(0,50,0);
+		this.enabled = false;
 	}
 
 	void OnPassengerTimeout (int index)
