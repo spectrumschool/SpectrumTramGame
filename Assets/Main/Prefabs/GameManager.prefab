@@ -51,13 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11253595b55c94cda9ba653b707ab1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTramSpeed: 1
-  maxTramSpeed: 5
+  minTramSpeed: 1.5
+  maxTramSpeed: 8
+  passengerViewSpeedMult: 4
   distanceBetweenStops: 12
-  passengerStopOffset: 5.1
+  passengerStopOffset: 7.1
   maxSpeedDistance: 500
-  timeBetweenStops: 30
-  timeBetweenStopsMargin: 5
+  timeBetweenStops: 12
+  timeBetweenStopsMargin: 12
   stopNameManager:
     stopNames:
     - Spectrum
@@ -80,15 +81,6 @@ MonoBehaviour:
     - Halewijn
     - Sporthal
     - Diamant
-  haltenamen:
-  - Spectrumschool
-  - Antwerpen Centraal
-  - Groenplaats
-  - Roosevelt
-  - BalZacharia
-  - Chocoladefabriek
-  - Diamant
-  - Meir
   tracks:
   - {fileID: 0}
   - {fileID: 0}

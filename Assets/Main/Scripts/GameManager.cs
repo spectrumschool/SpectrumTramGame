@@ -6,6 +6,8 @@ using System;
 public class GameManager : Singleton<GameManager>
 {
 	float DEBUGTIME = 0;
+	float DEBUGTIME_STOPS = 0;
+	float DEBUGTIME_SPAWN_ARRIVE = 0;
 
 	public float minTramSpeed = 1;
 	public float maxTramSpeed = 10;
@@ -34,6 +36,7 @@ public class GameManager : Singleton<GameManager>
 
 	string[] _playerInput;
 	int _boardingCount;
+	int _stopsPassed;
 
 	Transform _tfLastStopDriver;
 	Transform _tfLastStopPassenger;
@@ -116,6 +119,8 @@ public class GameManager : Singleton<GameManager>
 
 	void OnEnterTramComplete (int playerIndex)
 	{
+//		Debug.Log("DEBUGTIME_SPAWN_ARRIVE: "+DEBUGTIME_SPAWN_ARRIVE);
+
 		RequestedStop rs = stopNameManager.CharArrived();
 		passengerInfo[playerIndex].Show( rs.urgency * timeBetweenStops + timeBetweenStopsMargin, rs.stopName);
 
@@ -135,6 +140,8 @@ public class GameManager : Singleton<GameManager>
 	void Update()
 	{
 		DEBUGTIME += Time.deltaTime * tramSpeed;
+		DEBUGTIME_STOPS += Time.deltaTime * tramSpeed;
+		DEBUGTIME_SPAWN_ARRIVE += Time.deltaTime * tramSpeed;
 
 		_updateHandler();
 	}
@@ -145,18 +152,28 @@ public class GameManager : Singleton<GameManager>
 		if(tramSpeed > 0)
 		{
 			distanceTravelled += Time.deltaTime * tramSpeed;
-			tramSpeed = Mathf.Lerp(minTramSpeed,maxTramSpeed,distanceTravelled/maxSpeedDistance);
+//			tramSpeed = Mathf.Lerp(minTramSpeed,maxTramSpeed,distanceTravelled/maxSpeedDistance);
 		}
 
 		//place stops & refill passengers
 		if(distanceTravelled >= _nextStopDriver)
 		{
+			Debug.Log(_stopsPassed);
+			if(_stopsPassed > 0 && _stopsPassed < 5) tramSpeed += .5f;
+			else if(_stopsPassed != 0) tramSpeed += 0.25f;
+			tramSpeed = Mathf.Min(tramSpeed,maxTramSpeed);
+			++_stopsPassed;
+
+//			Debug.Log("DEBUGTIME_STOPS: "+ DEBUGTIME_STOPS);
+			DEBUGTIME_STOPS = 0;
+
 			//refill passengers
 			for (int i = 0; i < 4; i++)
 			{
 				if(!passengers[i].enabled)
 				{
 					passengers[i].EnterTram();
+					DEBUGTIME_SPAWN_ARRIVE = 0;
 				}
 			}
 
@@ -224,6 +241,7 @@ public class GameManager : Singleton<GameManager>
 		distanceTravelled = 0;
 		tramSpeed = 0;
 		_boardingCount = 0;
+		_stopsPassed = 0;
 		_nextStopDriver = 0;
 		_nextStopPassenger = passengerStopOffset;
 
