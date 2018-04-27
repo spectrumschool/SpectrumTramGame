@@ -15,6 +15,7 @@ public class Passenger : MonoBehaviour
 	SpriteRenderer _sprite;
 
 	public bool onBoard {get; private set; }
+	public bool inputEnabled {get; private set; }
 
 	void Awake()
 	{
@@ -42,6 +43,7 @@ public class Passenger : MonoBehaviour
 		_onTheFloor = false;
 		_inTram = false;
 		onBoard = false;
+		inputEnabled = true;
 		//offscreen
 		transform.position = new Vector3(0,50,0);
 		this.enabled = false;
@@ -57,6 +59,7 @@ public class Passenger : MonoBehaviour
 
 	public void EnterTram()
 	{
+		inputEnabled = false;
 		SoundKit.instance.playOneShot(AudioManager.inst.acHopOn);
 		this.enabled = true;
 		_onTheFloor = false;
@@ -71,6 +74,7 @@ public class Passenger : MonoBehaviour
 
 	public void JumpOut()
 	{
+		inputEnabled = false;
 		transform.SetParent(null);
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10.0f);
 		if(hit.collider != null)
@@ -97,6 +101,7 @@ public class Passenger : MonoBehaviour
 	{
 		EventManager.EnterTramCompleteEvent(playerIndex);
 		onBoard = true;
+		inputEnabled = true;
 		_inTram = true;
 	}
 
@@ -115,6 +120,7 @@ public class Passenger : MonoBehaviour
 			if(transform.position.x < -20.0f)
 			{
 				this.enabled = false;
+				inputEnabled = true;
 			}
 		}
 		else

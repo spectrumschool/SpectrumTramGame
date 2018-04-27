@@ -224,7 +224,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			if(!passengers[i].onBoard && Input.GetButtonDown(_playerInput[i]))
+			if(!passengers[i].onBoard && passengers[i].inputEnabled && Input.GetButtonDown(_playerInput[i]))
 			{
 				passengers[i].EnterTram();
 			}

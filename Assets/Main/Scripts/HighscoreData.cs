@@ -29,7 +29,5 @@ public class HighscoreListData : JSONData<HighscoreListData>
 	public HighscoreListData ()
 	{
 		highscores = new List<HighscoreEntryData>();
-		highscores.Add(new HighscoreEntryData(10,DateTime.Now));
-		highscores.Add(new HighscoreEntryData(20,DateTime.Today));
 	}
 }
