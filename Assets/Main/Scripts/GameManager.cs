@@ -159,8 +159,8 @@ public class GameManager : Singleton<GameManager>
 		if(distanceTravelled >= _nextStopDriver)
 		{
 			Debug.Log(_stopsPassed);
-			if(_stopsPassed > 0 && _stopsPassed < 5) tramSpeed += .5f;
-			else if(_stopsPassed != 0) tramSpeed += 0.25f;
+			if(_stopsPassed > 0 && _stopsPassed < 3) tramSpeed += .5f;
+			else if(_stopsPassed != 0) tramSpeed += 0.2f;
 			tramSpeed = Mathf.Min(tramSpeed,maxTramSpeed);
 			++_stopsPassed;
 
