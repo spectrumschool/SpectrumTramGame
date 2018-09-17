@@ -1884,6 +1884,16 @@ Prefab:
       propertyPath: acBell
       value: 
       objectReference: {fileID: 8300000, guid: ef390be902d1647faa1c69b68ce3b9de, type: 3}
+    - target: {fileID: 114128960522033106, guid: bbf0ee79c0b6c422aa3b98a6755ff772,
+        type: 2}
+      propertyPath: acMenuMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ba58fdea3831479e85f9e64874cefbb, type: 3}
+    - target: {fileID: 114128960522033106, guid: bbf0ee79c0b6c422aa3b98a6755ff772,
+        type: 2}
+      propertyPath: musicVolume
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbf0ee79c0b6c422aa3b98a6755ff772, type: 2}
   m_IsPrefabParent: 0
