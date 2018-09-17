@@ -133,12 +133,21 @@ public class GameManager : Singleton<GameManager>
 			{
 				tramSpeed = minTramSpeed;
 				_updateHandler = UpdateMovingTram;
+				EventManager.StartTramEvent();
 			}
 		}
 	}
 
 	void Update()
 	{
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			Application.Quit();
+		}
+
+
+
+
 		DEBUGTIME += Time.deltaTime * tramSpeed;
 		DEBUGTIME_STOPS += Time.deltaTime * tramSpeed;
 		DEBUGTIME_SPAWN_ARRIVE += Time.deltaTime * tramSpeed;
@@ -158,7 +167,7 @@ public class GameManager : Singleton<GameManager>
 		//place stops & refill passengers
 		if(distanceTravelled >= _nextStopDriver)
 		{
-			Debug.Log(_stopsPassed);
+//			Debug.Log(_stopsPassed);
 			if(_stopsPassed > 0 && _stopsPassed < 3) tramSpeed += .5f;
 			else if(_stopsPassed != 0) tramSpeed += 0.2f;
 			tramSpeed = Mathf.Min(tramSpeed,maxTramSpeed);

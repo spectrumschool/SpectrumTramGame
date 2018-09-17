@@ -43,7 +43,8 @@ public class HighscoreUI : MonoBehaviour
 		if(_canResetGame && Input.GetButtonDown(BELL))
 		{
 			_canResetGame = false;
-			EventManager.ResetGameEvent();
+//			EventManager.ResetGameEvent();
+			Application.Quit();
 		}
 	}
 

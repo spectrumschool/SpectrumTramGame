@@ -52,4 +52,10 @@ public static class EventManager
 	{
 		OnResetGame();
 	}
+
+	public static event Action OnStartTram = delegate {};
+	public static void StartTramEvent()
+	{
+		OnStartTram();
+	}
 }

@@ -30,16 +30,24 @@ public class Passenger : MonoBehaviour
 	{
 		EventManager.OnPassengerTimeout += OnPassengerTimeout;
 		EventManager.OnResetGame += OnResetGame;
+		EventManager.OnGameOver += OnGameOver;
+	}
+
+	void OnGameOver ()
+	{
+		ZestKit.instance.stopAllTweensWithTarget(transform);
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnPassengerTimeout -= OnPassengerTimeout;
 		EventManager.OnResetGame -= OnResetGame;
+		EventManager.OnGameOver -= OnGameOver;
 	}
 
 	void OnResetGame()
 	{
+		ZestKit.instance.stopAllTweensWithTarget(transform);
 		_onTheFloor = false;
 		_inTram = false;
 		onBoard = false;
@@ -59,6 +67,7 @@ public class Passenger : MonoBehaviour
 
 	public void EnterTram()
 	{
+		Debug.Log("EnterTram");
 		inputEnabled = false;
 		SoundKit.instance.playOneShot(AudioManager.inst.acHopOn);
 		this.enabled = true;
@@ -99,6 +108,7 @@ public class Passenger : MonoBehaviour
 
 	void OnEnterTramComplete(ITween<Vector3> tween)
 	{
+		Debug.Log("OnEnterTramComplete");
 		EventManager.EnterTramCompleteEvent(playerIndex);
 		onBoard = true;
 		inputEnabled = true;
