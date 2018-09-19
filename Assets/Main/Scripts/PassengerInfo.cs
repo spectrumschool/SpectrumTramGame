@@ -94,7 +94,7 @@ public class PassengerInfo : MonoBehaviour
 		_timer = 0;
 		transform.position = _upTarget;
 		ZestKit.instance.stopAllTweensWithTarget(transform);
-		transform.ZKpositionTo(_downTarget,0.7f).setEaseType(EaseType.BounceOut).start();
+		transform.ZKpositionTo(_downTarget,0.12f).setEaseType(EaseType.BounceOut).start();
 		this.enabled = true;
 	}
 
@@ -102,7 +102,7 @@ public class PassengerInfo : MonoBehaviour
 	{
 		this.enabled = false;
 		ZestKit.instance.stopAllTweensWithTarget(transform);
-		transform.ZKpositionTo(_upTarget).start();
+		transform.ZKpositionTo(_upTarget,0.12f).start();
 	}
 
 	void Update()
@@ -117,24 +117,9 @@ public class PassengerInfo : MonoBehaviour
 			if(_timeLeft == 0)
 			{
 				EventManager.PassengerTimeoutEvent(playerIndex);
+				txtTimeLeft.color = Color.red;
 				this.enabled = false;
-				StartCoroutine(OutOfTimeCR());
 			}
 		}
-	}
-
-	IEnumerator OutOfTimeCR()
-	{
-		
-		bool toggle = true;
-		for (int i = 0; i < 8; i++)
-		{
-			toggle = !toggle;
-			txtTimeLeft.color = toggle ? Color.red : Color.black;
-			yield return new WaitForSeconds(.12f);
-		}
-		yield return new WaitForSeconds(0.7f);
-		Hide();
-
 	}
 }
