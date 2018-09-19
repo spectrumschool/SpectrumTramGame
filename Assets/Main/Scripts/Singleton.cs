@@ -15,8 +15,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 		{
 			if (applicationIsQuitting)
 			{
-				Debug.LogWarning("[Singleton] instance '" + typeof(T) + "' already destroyed on application quit - returning null");
-				return null;
+				_instance = null;
+				applicationIsQuitting = false;
+//				Debug.LogWarning("[Singleton] instance '" + typeof(T) + "' already destroyed on application quit - returning null");
+//				return null;
 			}
 
 			lock (_lock)

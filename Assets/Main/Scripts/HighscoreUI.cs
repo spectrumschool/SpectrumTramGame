@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using System;
+using UnityEngine.SceneManagement;
 
 public class HighscoreUI : MonoBehaviour
 {
@@ -43,8 +44,10 @@ public class HighscoreUI : MonoBehaviour
 		if(_canResetGame && Input.GetButtonDown(BELL))
 		{
 			_canResetGame = false;
+			ObjectPool.Instance.ReleasePool();
+			ObjectPool.Instance.Reset();
+			SceneManager.LoadScene(0);
 //			EventManager.ResetGameEvent();
-			Application.Quit();
 		}
 	}
 

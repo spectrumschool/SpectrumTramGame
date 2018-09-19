@@ -82,7 +82,7 @@ namespace Prime31.ZestKit
 					{
 						var obj = new GameObject( "ZestKit" );
 						_instance = obj.AddComponent<ZestKit>();
-						DontDestroyOnLoad( obj );
+//						DontDestroyOnLoad( obj );
 					}
 				}
 
