@@ -140,14 +140,6 @@ public class GameManager : Singleton<GameManager>
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.P))
-		{
-			Application.Quit();
-		}
-
-
-
-
 		DEBUGTIME += Time.deltaTime * tramSpeed;
 		DEBUGTIME_STOPS += Time.deltaTime * tramSpeed;
 		DEBUGTIME_SPAWN_ARRIVE += Time.deltaTime * tramSpeed;
