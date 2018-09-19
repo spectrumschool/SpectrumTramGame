@@ -7,12 +7,15 @@ using System;
 public class Passenger : MonoBehaviour
 {
 	public int playerIndex;
+	public bool DEBUG_AI = false;
 	Transform _tram;
 	Vector3 _targetPosition;
 	bool _onTheFloor = false;
 	bool _inTram = false;
 	string _button;
 	SpriteRenderer _sprite;
+
+	bool _DEBUG_AiJumps = false;
 
 	public bool onBoard {get; private set; }
 	public bool inputEnabled {get; private set; }
@@ -28,9 +31,29 @@ public class Passenger : MonoBehaviour
 
 	void OnEnable()
 	{
+		EventManager.DEBUG_AiHit += DEBUG_AiHit;
+
 		EventManager.OnPassengerTimeout += OnPassengerTimeout;
 		EventManager.OnResetGame += OnResetGame;
 		EventManager.OnGameOver += OnGameOver;
+	}
+
+
+	void OnDisable()
+	{
+		EventManager.DEBUG_AiHit -= DEBUG_AiHit;
+
+		EventManager.OnPassengerTimeout -= OnPassengerTimeout;
+		EventManager.OnResetGame -= OnResetGame;
+		EventManager.OnGameOver -= OnGameOver;
+	}
+
+	void DEBUG_AiHit (int index)
+	{
+		if(index == playerIndex)
+		{
+			_DEBUG_AiJumps = true;
+		}
 	}
 
 	void OnGameOver ()
@@ -38,15 +61,10 @@ public class Passenger : MonoBehaviour
 		ZestKit.instance.stopAllTweensWithTarget(transform);
 	}
 
-	void OnDisable()
-	{
-		EventManager.OnPassengerTimeout -= OnPassengerTimeout;
-		EventManager.OnResetGame -= OnResetGame;
-		EventManager.OnGameOver -= OnGameOver;
-	}
-
 	void OnResetGame()
 	{
+		_DEBUG_AiJumps = false;
+
 		ZestKit.instance.stopAllTweensWithTarget(transform);
 		_onTheFloor = false;
 		_inTram = false;
@@ -67,7 +85,6 @@ public class Passenger : MonoBehaviour
 
 	public void EnterTram()
 	{
-		Debug.Log("EnterTram");
 		inputEnabled = false;
 		SoundKit.instance.playOneShot(AudioManager.inst.acHopOn);
 		this.enabled = true;
@@ -108,7 +125,6 @@ public class Passenger : MonoBehaviour
 
 	void OnEnterTramComplete(ITween<Vector3> tween)
 	{
-		Debug.Log("OnEnterTramComplete");
 		EventManager.EnterTramCompleteEvent(playerIndex);
 		onBoard = true;
 		inputEnabled = true;
@@ -135,7 +151,27 @@ public class Passenger : MonoBehaviour
 		}
 		else
 		{
-			if(_inTram && GameManager.inst.tramSpeed > 0 && Input.GetButtonDown(_button))
+			if(DEBUG_AI)
+			{
+				RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10.0f);
+				if(hit.collider != null)
+				{
+					Halte halte = hit.collider.transform.parent.GetComponent<Halte>();
+					if(halte != null)
+					{
+						EventManager.DEBUG_AiCheckEvent(playerIndex,halte.haltenaam.text);
+					}
+				}
+			}
+
+			bool buttonDown = Input.GetButtonDown(_button);
+			if(DEBUG_AI && _DEBUG_AiJumps)
+			{
+				buttonDown = true;
+				_DEBUG_AiJumps = false;
+			}
+				
+			if(_inTram && GameManager.inst.tramSpeed > 0 && buttonDown)
 			{
 				JumpOut();
 			}

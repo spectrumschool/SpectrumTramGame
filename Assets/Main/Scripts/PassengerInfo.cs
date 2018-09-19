@@ -29,6 +29,8 @@ public class PassengerInfo : MonoBehaviour
 
 	void OnEnable()
 	{
+		EventManager.DEBUG_AiCheck += DEBUG_AiCheck;
+
 		EventManager.OnPassengerHitStop += OnPassengerHitStop;
 		EventManager.OnPassengerHitRails += OnPassengerHitRails;
 		EventManager.OnGameOver += OnGameOver;
@@ -37,10 +39,24 @@ public class PassengerInfo : MonoBehaviour
 
 	void OnDisable()
 	{
+		EventManager.DEBUG_AiCheck -= DEBUG_AiCheck;
+
 		EventManager.OnPassengerHitStop -= OnPassengerHitStop;
 		EventManager.OnPassengerHitRails -= OnPassengerHitRails;
 		EventManager.OnGameOver -= OnGameOver;
 		EventManager.OnResetGame -= OnResetGame;
+	}
+
+
+	void DEBUG_AiCheck (int index, string haltenaam)
+	{
+		if(index == playerIndex)
+		{
+			if(haltenaam.Equals(txtHalteNaam.text))
+			{
+				EventManager.DEBUG_AiHitEvent(index);
+			}
+		}
 	}
 
 	void OnResetGame()

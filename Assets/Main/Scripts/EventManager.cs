@@ -5,6 +5,19 @@ using System;
 
 public static class EventManager
 {
+	public static event Action<int,string> DEBUG_AiCheck = delegate {};
+	public static void DEBUG_AiCheckEvent(int playerIndex, string haltenaam)
+	{
+		DEBUG_AiCheck(playerIndex, haltenaam);
+	}
+
+	public static event Action<int> DEBUG_AiHit = delegate {};
+	public static void DEBUG_AiHitEvent(int playerIndex)
+	{
+		DEBUG_AiHit(playerIndex);
+	}
+
+
 	public static event Action<int> OnReputationChanged = delegate {};
 	public static void ReputationChangedEvent(int newAmount)
 	{

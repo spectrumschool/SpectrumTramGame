@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 3
+  DEBUG_AI: 0
 --- !u!1 &347881611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,6 +1507,11 @@ Prefab:
       propertyPath: spawnHaltePassenger
       value: 
       objectReference: {fileID: 440945201}
+    - target: {fileID: 114913649587235778, guid: bca3a0780c1617441bc0684ef0f37d82,
+        type: 2}
+      propertyPath: minTramSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bca3a0780c1617441bc0684ef0f37d82, type: 2}
   m_IsPrefabParent: 0
@@ -1894,6 +1900,11 @@ Prefab:
       propertyPath: musicVolume
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 114559284025697318, guid: bbf0ee79c0b6c422aa3b98a6755ff772,
+        type: 2}
+      propertyPath: dontDestroyOnLoad
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbf0ee79c0b6c422aa3b98a6755ff772, type: 2}
   m_IsPrefabParent: 0
@@ -2029,6 +2040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 2
+  DEBUG_AI: 0
 --- !u!1 &1267387282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,6 +2807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 1
+  DEBUG_AI: 0
 --- !u!1 &1799933648
 GameObject:
   m_ObjectHideFlags: 0
@@ -3330,6 +3343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 0
+  DEBUG_AI: 0
 --- !u!1001 &2110378388
 Prefab:
   m_ObjectHideFlags: 0
