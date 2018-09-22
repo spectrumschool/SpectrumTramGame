@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
 	float DEBUGTIME_STOPS = 0;
 	float DEBUGTIME_SPAWN_ARRIVE = 0;
 
+	public float resetTime = 6.0f;
 	public float minTramSpeed = 1;
 	public float maxTramSpeed = 10;
 	public float passengerViewSpeedMult = 4;
@@ -30,6 +31,8 @@ public class GameManager : Singleton<GameManager>
 	public float tramSpeed = 0;
 
 	public float distanceTravelled {get; private set; }
+
+	float _resetTimer = 0;
 	float _nextStopDriver;
 	float _nextStopPassenger;
 	string[] _nextStopNames;
@@ -140,6 +143,21 @@ public class GameManager : Singleton<GameManager>
 
 	void Update()
 	{
+		if(Input.GetKey(KeyCode.P))
+		{
+			_resetTimer += Time.deltaTime;
+			if(_resetTimer > resetTime)
+			{
+				Debug.Log("QUIT");
+				_resetTimer = 0f;
+				Application.Quit();
+			}
+		}
+		if(Input.GetKeyUp(KeyCode.P))
+		{
+			_resetTimer = 0f;
+		}
+
 		DEBUGTIME += Time.deltaTime * tramSpeed;
 		DEBUGTIME_STOPS += Time.deltaTime * tramSpeed;
 		DEBUGTIME_SPAWN_ARRIVE += Time.deltaTime * tramSpeed;
